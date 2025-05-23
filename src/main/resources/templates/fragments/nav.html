@@ -1,0 +1,21 @@
+<!-- nav.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="navbar">
+    <nav style="background-color: #007bff; padding: 1rem; color: white; display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-size: 1.2rem; font-weight: bold;">
+            Auto-Restart Dashboard
+        </div>
+        <div>
+            <a th:href="@{/select-ip}" style="color: white; text-decoration: none; margin-right: 1.5rem;">Dashboard</a>
+            <form th:action="@{/logout}" method="post" style="display: inline;">
+                <button type="submit" style="background: transparent; border: none; color: white; font-weight: bold; cursor: pointer;">
+                    Logout
+                </button>
+            </form>
+        </div>
+    </nav>
+</div>
+</body>
+</html>

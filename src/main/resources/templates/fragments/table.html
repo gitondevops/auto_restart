@@ -1,0 +1,26 @@
+<!-- fragments/table.html -->
+<table class="table table-bordered table-striped text-center" xmlns:th="http://www.w3.org/1999/xhtml">
+    <thead class="table-dark">
+    <tr>
+        <th>PID</th>
+        <th>CPU Usage</th>
+        <th>Command</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="proc : ${processes}">
+        <td th:text="${proc.pid}">1234</td>
+        <td th:text="${proc.cpu}">0.3%</td>
+        <td th:text="${proc.cmd}">java -jar /home/ubuntu/app.war</td>
+        <td>
+            <form th:action="@{/restart-pid}" method="post">
+                <input type="hidden" name="pid" th:value="${proc.pid}"/>
+                <input type="hidden" name="cmd" th:value="${proc.cmd}"/>
+                <input type="hidden" name="cmd" th:value="${host}"/>
+                <button type="submit" class="btn btn-danger btn-sm">Restart</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
