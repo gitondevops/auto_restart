@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Process Dashboard</title>
+</head>
+<body>
+
+<h2>Process Monitoring Dashboard</h2>
+
+<table border="1" cellspacing="0" cellpadding="5">
+    <thead>
+    <tr>
+        <th>Port</th>
+        <th>Status</th>
+        <th>WAR</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="port : ${ports}">
+        <td th:text="${port.port}">8080</td>
+        <td th:text="${port.state}">Running</td>
+        <td th:text="${port.warFile}">app.war</td>
+        <td>
+            <form th:action="@{|/restart/${port.port}|}" method="post">
+                <button type="submit" th:disabled="${!port.restartable}">Restart</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<p><strong>CPU:</strong> <span th:text="${metrics.cpuUsage}">25%</span></p>
+<p><strong>Memory:</strong> <span th:text="${metrics.memoryUsage}">512MB</span></p>
+
+</body>
+</html>
